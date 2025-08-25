@@ -65,8 +65,6 @@ def fit(model, train_loader, val_loader, criterion, optimizer, scheduler, num_ep
         print(f"\nTrain Loss: {history['train_loss'][-1]:.4f}, Val Loss: {history['val_loss'][-1]:.4f}, "
               f"Val Dice: {history['val_dice'][-1]:.4f}, Val Jaccard: {history['val_jacc'][-1]:.4f}")
 
-    print(f"\n[INFO] Training completed in {time.time()-start:.2f}s")
-
     # ---------- Save Model ----------
     torch.save(model.state_dict(), f"{save_path}.pth")
     np.save(f"{save_path}_history.npy", history)
