@@ -69,6 +69,6 @@ class BrainSegmentationDataset(data.Dataset):
 def make_dataloaders(trainset, valset, testset, batch_size=16, num_workers=2):
     return (
         data.DataLoader(trainset, batch_size=batch_size, shuffle=True, num_workers=num_workers),
-        data.DataLoader(valset, batch_size=batch_size, shuffle=False, num_workers=num_workers),
-        data.DataLoader(testset, batch_size=batch_size, shuffle=False, num_workers=num_workers)
+        data.DataLoader(valset, batch_size=batch_size, shuffle=True, num_workers=num_workers),
+        data.DataLoader(testset, batch_size=batch_size, shuffle=True, num_workers=num_workers)
     )
