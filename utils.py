@@ -78,24 +78,26 @@ def prediction_plots(model, dataloader, device, num_samples=5):
         outputs = model(images)
         preds = torch.round(outputs)
 
-    fig, axes = plt.subplots(3, num_samples, figsize=(15, 5))
+    fig, axes = plt.subplots(num_samples, 3, figsize=(5, 8))
     for i in range(num_samples):
         # Input image
         img = images[i].cpu().permute(1, 2, 0).numpy()
         img = img * 0.5 + 0.5  # unnormalize
-        axes[0, i].imshow(img)
-        axes[0, i].set_title("Input")
-        axes[0, i].axis("off")
+        axes[i, 0].imshow(img)
+        axes[i, 0].axis("off")
 
         # Ground truth
-        axes[1, i].imshow(masks[i].cpu().squeeze(), cmap="gray")
-        axes[1, i].set_title("GT Mask")
-        axes[1, i].axis("off")
+        axes[i, 1].imshow(masks[i].cpu().squeeze(), cmap="gray")
+        axes[i, 1].axis("off")
 
         # Prediction
-        axes[2, i].imshow(preds[i].cpu().squeeze(), cmap="gray")
-        axes[2, i].set_title("Pred Mask")
-        axes[2, i].axis("off")
+        axes[i, 2].imshow(preds[i].cpu().squeeze(), cmap="gray")
+        axes[i, 2].axis("off")
 
-    plt.tight_layout()
+        if i == 0:
+            axes[i, 0].set_title("Input")
+            axes[i, 1].set_title("GT Mask")
+            axes[i, 2].set_title("Pred Mask")
+
+    plt.tight_layout(pad=0.5)
     plt.show()
