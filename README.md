@@ -39,13 +39,15 @@ brain-mri-segmentation/
     You can download it using **Kaggle API**
 
     ```bash
-    # Install Kaggle CLI if not installed
-    pip install kaggle
+    # Install kagglehub if not installed
+    pip install kagglehub
 
-    # Configure API key (~/.kaggle/kaggle.json)
-    # Then download the dataset
-    kaggle datasets download -d mateuszbuda/lgg-mri-segmentation
-    unzip lgg-mri-segmentation.zip -d ./data/
+    import kagglehub
+
+    # Download latest version
+    path = kagglehub.dataset_download("mateuszbuda/lgg-mri-segmentation")
+
+    print("Path to dataset files:", path)
     ````
     ```
 
@@ -80,6 +82,13 @@ After training, the script automatically:
 * Plots **training/validation loss curves**.
 * Shows **sample predictions** alongside input images and ground truth masks.
 
+<p align="center">
+    <img src="prediction_sample.png" alt="Brain MRI Segmentation Example" />
+</p>
+
+<p align="center">
+    <em>Above: Input MRI, ground truth mask, and model prediction.</em>
+</p>
 
 ## References
 
